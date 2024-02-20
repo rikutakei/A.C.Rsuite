@@ -90,18 +90,3 @@ if(system(strCMD)!=0) stop("Error in Finding differential peaks for pair-wised g
 warnings()
 ## finish -----------------
 cat("\n",opt$assay,"peak analysis pipeline finished successfully!\n")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

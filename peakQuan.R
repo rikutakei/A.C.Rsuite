@@ -7,21 +7,21 @@ if(!require(optparse))
 args <- commandArgs(trailingOnly=TRUE)
 
 option_list = list(
-  make_option(c("-o", "--out"), type="character", default=dirname(args[1]), 
+  make_option(c("-o", "--out"), type="character", default=dirname(args[1]),
               help="Output directory path [default= %default]", metavar="character"),
-  make_option(c("-g", "--genome"), type="character", default="mm10", 
+  make_option(c("-g", "--genome"), type="character", default="mm10",
               help="The genome of the sequeces came from, mm10, hg38 [default= %default]", metavar="character"),
-  make_option(c("-a", "--assay"), type="character", default="atac", 
+  make_option(c("-a", "--assay"), type="character", default="atac",
               help="The assay type atac, chip and (future: histone) [default= %default]", metavar="character"),
-  make_option(c("-p", "--peak"), type="character", #default="", 
+  make_option(c("-p", "--peak"), type="character", #default="",
               help="The full path to the peak files separated by ','[default= %default]. Either '-p' or '-i' has to be provided", metavar="character"),
-  make_option(c("-i", "--idr"), type="character", #default="", 
+  make_option(c("-i", "--idr"), type="character", #default="",
               help="The full path to a folder contains idr peaks of all groups defined sample file [default= %default]. Either '-p' or '-i' has to be provided", metavar="character"),
-  make_option(c("-d", "--distal"), type="numeric", default="3000", 
+  make_option(c("-d", "--distal"), type="numeric", default="3000",
               help="The distance from TSS to be considered enhancer region [default= %default]", metavar="character"),
-  make_option(c("-t", "--track"), type="character", default="", 
+  make_option(c("-t", "--track"), type="character", default="",
               help="The name of the track to be generated. If not provided, no track will be generated. [default= %default]", metavar="character"),
-  make_option(c("-c", "--homer"), type="character", default=" -size given -pc 3", 
+  make_option(c("-c", "--homer"), type="character", default=" -size given -pc 3",
               help="Additional commands for homer peak annotation (annotatePeaks.pl) [default= %default]", metavar="character")
 )
 opt_parser = OptionParser("\n\t%prog path/to/the/sample/definition/file [options]",
@@ -159,19 +159,19 @@ if(opt$assay=="atac"){
 }
 ## make a hub of all samples -----------------
 hubName <- opt$track#paste(Sys.info()['user'],gsub("\\.txt","",basename(strSample)),sep="_")
-if(nchar(hubName)>2){
-  cat("\n\tStep 6: create a hub",hubName,"for all merge tags\n")
-  strCMD <- paste("makeMultiWigHub.pl",hubName,opt$genome,
-                  "-color",paste(apply(col2rgb(sInfo[,1]),2,paste,collapse=","),collapse=" "),
-                  "-force -d",paste(strTagDir,collapse=" "))
-  cat("\t\t",strCMD,"\n")
-  if(system(paste(strCMD,"2>/dev/null"))!=0) stop("Error in making a hub of all samples!")
-  
-  strHub <- paste("/homer_data/www/html/hubs/",hubName,"/",opt$genome,"/trackDb.txt",sep="")
-  if(!file.exists(strHub)) stop("The Hub was NOT created successfully!\n")
-  cat("\t\tAdd hub on ucsc genome browser:\n\n\n=================================================\n\t\thttp://homer.ucsd.edu/hubs/",
-      hubName,"/hub.txt\n=================================================\n\n\n",sep="")
-}
+# if(nchar(hubName)>2){
+#   cat("\n\tStep 6: create a hub",hubName,"for all merge tags\n")
+#   strCMD <- paste("makeMultiWigHub.pl",hubName,opt$genome,
+#                   "-color",paste(apply(col2rgb(sInfo[,1]),2,paste,collapse=","),collapse=" "),
+#                   "-force -d",paste(strTagDir,collapse=" "))
+#   cat("\t\t",strCMD,"\n")
+#   if(system(paste(strCMD,"2>/dev/null"))!=0) stop("Error in making a hub of all samples!")
+#
+#   strHub <- paste("/homer_data/www/html/hubs/",hubName,"/",opt$genome,"/trackDb.txt",sep="")
+#   if(!file.exists(strHub)) stop("The Hub was NOT created successfully!\n")
+#   cat("\t\tAdd hub on ucsc genome browser:\n\n\n=================================================\n\t\thttp://homer.ucsd.edu/hubs/",
+#       hubName,"/hub.txt\n=================================================\n\n\n",sep="")
+# }
 #file.copy(strHub,gsub("\\.txt","_ori.txt",strHub))
 #hubs <- scan(strHub,what="character",sep="\n",quiet=T)
 #for(i in rownames(sInfo)){

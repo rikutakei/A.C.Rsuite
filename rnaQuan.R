@@ -235,21 +235,22 @@ for(i in rownames(sInfo)){
   tagInfo[grepl("fragmentLengthEstimate",tagInfo[,1]),1] <- paste("fragmentLengthEstimate",round(mean(fragL)),sep="=")
   write.table(tagInfo,file=paste(strTag,"/tagInfo.txt",sep=""),sep="\t",row.names=F,quote=F,na="")
 }
+
 close(conn)
 strTagDir <-paste(strMerge,rownames(sInfo),sep="")
 ## make a hub of all samples -----------------
-hubName <- opt$track
-if(nchar(hubName)>2){
-  cat("\tStep 7: create a hub",hubName,"for all merge tags, will try to overwrite if it exists\n")
-  strCMD <- paste("makeMultiWigHub.pl",hubName,opt$genome,
-                  "-color",paste(apply(col2rgb(sInfo[,1]),2,paste,collapse=","),collapse=" "),
-                  "-force -d",paste(strTagDir,collapse=" "))
-  cat("\t\t",strCMD,"\n")
-  system(paste(strCMD,"2>/dev/null"))
-  strHub <- paste("/homer_data/www/html/hubs/",hubName,"/",opt$genome,"/trackDb.txt",sep="")
-  if(!file.exists(strHub)) stop("The Hub was NOT created successfully!\n")
-  cat("\t\tAdd hub on ucsc genome browser:\n\t\thttp://homer.ucsd.edu/hubs/",hubName,"/hub.txt\n",sep="")
-}
+#hubName <- opt$track
+#if(nchar(hubName)>2){
+#  cat("\tStep 7: create a hub",hubName,"for all merge tags, will try to overwrite if it exists\n")
+#  strCMD <- paste("makeMultiWigHub.pl",hubName,opt$genome,
+#                  "-color",paste(apply(col2rgb(sInfo[,1]),2,paste,collapse=","),collapse=" "),
+#                  "-force -d",paste(strTagDir,collapse=" "))
+#  cat("\t\t",strCMD,"\n")
+#  system(paste(strCMD,"2>/dev/null"))
+#  strHub <- paste("/homer_data/www/html/hubs/",hubName,"/",opt$genome,"/trackDb.txt",sep="")
+#  if(!file.exists(strHub)) stop("The Hub was NOT created successfully!\n")
+#  cat("\t\tAdd hub on ucsc genome browser:\n\t\thttp://homer.ucsd.edu/hubs/",hubName,"/hub.txt\n",sep="")
+#}
 
 ## -------------------
 cat("\nQuantification is done successfully!\n")

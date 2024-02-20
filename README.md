@@ -10,9 +10,20 @@ And the wetlab user can also learn data processing using R through all the scrip
 [Pipeline Figure coming soon...]
 
 The CLT was initially built in Chris Class lab @UCSD. If you have questions and requests, please submit an issues. Enjoy!
+
+# Setup on Cheaha
+
+This *should* install everything and make it available for you to run everything:
+
+```
+wget https://github.com/rikutakei/A.C.Rsuite/raw/master/setup.sh
+bash setup_cheaha.sh
+```
+
 # Pre-requirements
   - R,
   - [***homer***](http://homer.ucsd.edu)
+  - [`idr`] (https://github.com/nboley/idr)
 
 # Instruction
 There are two main pipelines, one is for standard RNA-Seq analysis; the other one is for ATAC-Seq and transcription factor (TF) ChIP-Seq. Currenly it dose not support broad peak assays such as histone ChIP. But you can use peaks from ATAC-seq to quantify them, such as H3K27ac ChIP-Seq.
@@ -64,15 +75,11 @@ The RNA process pipeline includes the following steps. The user can choose any s
 
 ## peakPipe.R
 
-
-
-
-
-
-
-
-
-
-
-
 More to come...
+
+# TODOs
+
+- Add LTS setup and data transfer instructions
+- Add oasis script
+- Add SLURM scripts to run oasis and `*Pipe.R` scripts
+
