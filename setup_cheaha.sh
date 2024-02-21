@@ -37,7 +37,9 @@ cd -
 
 cd /home/$(whoami)/software/idr-2.0.2/
 
-python3 setup.py install --user
+cp /home/$(whoami)/software/A.C.Rsuite/idr.py /home/$(whoami)/idr-2.0.2/idr/
+python3.10 setup.py install --user
+pip3.10 install matplotlib --user
 
 cd -
 

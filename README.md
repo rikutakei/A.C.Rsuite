@@ -79,6 +79,7 @@ More to come...
 
 # TODOs
 
+- For `setup_cheaha.sh`, add functionality of checking if everything is installed already (or just remove everything and do a fresh reinstall, since it's not that much)
 - Add LTS setup and data transfer instructions
 - Add oasis script
 - Add SLURM scripts to run oasis and `*Pipe.R` scripts
