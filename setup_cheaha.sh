@@ -7,7 +7,7 @@ module load R
 mkdir -p /home/$(whoami)/software/homer
 
 # Download and install HOMER
-wget http://homer.ucsd.edu/homer/configureHomer.pl -P /home/$(whoami)/software/
+wget http://homer.ucsd.edu/homer/configureHomer.pl -P /home/$(whoami)/software/homer
 
 cd /home/$(whoami)/software/homer
 
